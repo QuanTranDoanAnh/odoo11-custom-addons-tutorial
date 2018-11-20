@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="minimal_wiz.wiz" model="ir.ui.view">
+        <field name="name">minimal_wiz.wizard.form</field>
+        <field name="model">minimal_wiz.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Hi, I am a wizard">
+                <group>
+                    <field name="name" />
+                </group>
+                <footer>
+                    <button name="create_request"
+                        string="Finished" type="object"
+                        class="btn-primary" />
+                    <button special="cancel" string="Cancel" class="btn-cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_wizard" model="ir.actions.act_window">
+        <field name="name">Hi, I am a wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">minimal_wiz.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="minimal_wiz.wiz" />
+        <field name="target">new</field>
+    </record>
+
+    <!-- top level menu: no action -->
+    <menuitem id="main_minimal_wiz_menu" name="Minimal Wizard" />
+    <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+    <menuitem id="minimal_wiz_menu" name="Minimal Wizard"
+        parent="main_minimal_wiz_menu" />
+    <!-- Action menu -->
+    <menuitem id="launch_wizard" name="Launch Wizard"
+        parent="minimal_wiz_menu"
+        action="action_view_wizard" />
+</odoo>
