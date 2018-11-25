@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <!-- views (form, tree) -->
+    <!--CAS -->
+    <record id="cas_tree_view" model="ir.ui.view">
+        <field name="name">cas.tree</field>
+        <field name="model">athp.product.cas</field>
+        <field name="arch" type="xml">
+            <tree string="CAS Registrations">
+                <field name="code" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="cas_form_view" model="ir.ui.view">
+        <field name="name">cas.form</field>
+        <field name="model">athp.product.cas</field>
+        <field name="arch" type="xml">
+            <form string="CAS Registration">
+                <sheet>
+                    <group>
+                        <field name="code" />
+                        <field name="name" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Chemical group -->
+    <record id="chemical_group_tree_view" model="ir.ui.view">
+        <field name="name">chemical.group.tree</field>
+        <field name="model">athp.chemical.group</field>
+        <field name="arch" type="xml">
+            <tree string="Chemical groups">
+                <field name="code" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="chemical_group_form_view" model="ir.ui.view">
+        <field name="name">chemical.group.form</field>
+        <field name="model">athp.chemical.group</field>
+        <field name="arch" type="xml">
+            <form string="Chemical group">
+                <sheet>
+                    <group>
+                        <field name="code" />
+                        <field name="name" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--Customize product view -->
+
+
+    <!-- act_windows -->
+    <record id="action_partner_list" model="ir.actions.act_window">
+        <field name="name">Partners</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create the first partner</p>
+        </field>
+    </record>
+    <record id="action_product_list" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create the first Product</p>
+        </field>
+    </record>
+    <record id="action_cas_list" model="ir.actions.act_window">
+        <field name="name">CAS Registrations</field>
+        <field name="res_model">athp.product.cas</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create the first CAS Registration</p>
+        </field>
+    </record>
+
+    <record id="action_chemical_group_list" model="ir.actions.act_window">
+        <field name="name">Chemical groups</field>
+        <field name="res_model">athp.chemical.group</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create the first Chemical group</p>
+        </field>
+    </record>
+
+    <!-- menuitems -->
+    <menuitem id="main_athp_stock_menu" name="ATHP Stock Management" />
+
+    <!-- Operations -->
+    <menuitem id="athp_stock_operations_menu" name="Operations" 
+        parent="main_athp_stock_menu" />
+
+    <!--Master data -->
+    <menuitem id="athp_stock_master_menu" name="Master data" 
+        parent="main_athp_stock_menu" />
+    <menuitem id="athp_partner_list_menu" name="Partners"
+        parent="athp_stock_master_menu"
+        action="action_partner_list" />
+    <menuitem id="athp_product_list_menu" name="Products"
+        parent="athp_stock_master_menu"
+        action="action_product_list" />
+
+    <!-- Setting menus -->
+    <menuitem id="athp_stock_settings_menu" name="Settings" 
+        parent="main_athp_stock_menu" />
+    <menuitem id="athp_cas_list_menu" name="CAS Registrations"
+        parent="athp_stock_settings_menu"
+        action="action_cas_list" />
+    <menuitem id="athp_chemical_group_list_menu" name="Chemical Groups"
+        parent="athp_stock_settings_menu"
+        action="action_chemical_group_list" />
+</odoo>
